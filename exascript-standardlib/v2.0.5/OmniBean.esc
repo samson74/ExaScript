@@ -1,0 +1,45 @@
+"""
+Wrapper Class
+OmniBeanLib by OmniBean Inc.
+Ported by ExaPhaser with permission from OmniBean
+
+Full documentation available at
+http://exaphaser.github.io/OmniBeanLib/
+
+"""
+
+from System import *
+import sys
+original_curdir = Environment.CurrentDirectory
+curdir = IO.Path.GetDirectoryName(__file__)
+Environment.CurrentDirectory = curdir
+sys.path.append(curdir)
+
+import clr
+clr.AddReference('System.Windows.Forms')
+clr.AddReference('System.Drawing')
+clr.AddReferenceToFile('OmniBeanLib.dll')
+
+import OmniBeanLib
+
+class OBWeb(OmniBeanLib.Web.OBWeb):
+	pass
+
+class OS(OmniBeanLib.OSShell.OS):
+	pass
+
+class OBForms(OmniBeanLib.Forms.OBForms):
+	pass
+	
+class OBEnvironment(OmniBeanLib.OBEnvironment.OBEnvironment):
+	pass
+
+class OBFileSystem(OmniBeanLib.FileSystem.OBFileSystem):
+	pass
+
+class OBEncryption(OmniBeanLib.Crypto.OBEncryption):
+	pass
+
+	
+Environment.CurrentDirectory = original_curdir
+
