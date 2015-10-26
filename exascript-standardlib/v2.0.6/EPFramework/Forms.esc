@@ -1,0 +1,102 @@
+"""
+import os, sys, inspect
+# realpath() will make your script run, even if you symlink it :)
+cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
+if cmd_folder not in sys.path:
+    sys.path.insert(0, cmd_folder)
+
+# use this if you want to include modules from a subfolder
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe() ))[0],"subfolder")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+
+# Info:
+# cmd_folder = os.path.dirname(os.path.abspath(__file__)) # DO NOT USE __file__ !!!
+# __file__ fails if script is called in different ways on Windows
+# __file__ fails if someone does os.chdir() before
+# sys.argv[0] also fails because it doesn't not always contains the path
+"""
+
+from System import *
+import sys
+original_curdir = Environment.CurrentDirectory
+curdir = IO.Path.GetDirectoryName(__file__)
+Environment.CurrentDirectory = curdir
+sys.path.append(curdir)
+
+import clr
+clr.AddReference('System.Windows.Forms')
+clr.AddReference('System.Drawing')
+clr.AddReferenceToFile('EPFramework.dll')
+
+from System.Drawing import *
+from System.Windows.Forms import *
+from MetroFramework.Forms import *
+from MetroFramework import *
+from EPFramework.Forms import *
+
+Environment.CurrentDirectory = original_curdir
+
+def DisplayForm(EPFormWindow):
+	Window = EPFormWindow()
+	Window.InitializeForm()
+	Application.Run(Window)
+	
+class EPFormTheme:	
+	Dark, Light = range(2)
+
+class EPFormStyle:	
+	Black, Silver, Blue, Red, Green, Lime, Yellow, Pink, Magenta, Orange = range(10)
+
+class EPButton(Button):
+	def __init__(self):
+		super(Button, self).__init__()
+		self.FlatStyle = FlatStyle.Flat
+
+class EPMessageBox:
+	@staticmethod
+	def Show(*args):
+		MetroMessageBox.Show(*args)
+		
+class EPForm(MetroForm):	
+	def SetFormColor(self, formTheme):
+		if (formTheme == EPFormTheme.Dark):
+			self.Theme = MetroThemeStyle.Dark
+		if (formTheme == EPFormTheme.Light):
+			self.Theme = MetroThemeStyle.Light
+	
+	def SetFormStyle(self, formTheme):
+		if (formTheme == EPFormStyle.Black):
+			self.Style = MetroColorStyle.Black
+		if (formTheme == EPFormStyle.Silver):
+			self.Style = MetroColorStyle.Silver
+		if (formTheme == EPFormStyle.Blue):
+			self.Style = MetroColorStyle.Blue
+		if (formTheme == EPFormStyle.Red):
+			self.Style = MetroColorStyle.Red
+		if (formTheme == EPFormStyle.Green):
+			self.Style = MetroColorStyle.Green
+		if (formTheme == EPFormStyle.Lime):
+			self.Style = MetroColorStyle.Lime
+		if (formTheme == EPFormStyle.Yellow):
+			self.Style = MetroColorStyle.Yellow
+		if (formTheme == EPFormStyle.Pink):
+			self.Style = MetroColorStyle.Pink
+		if (formTheme == EPFormStyle.Magenta):
+			self.Style = MetroColorStyle.Magenta
+		if (formTheme == EPFormStyle.Orange):
+			self.Style = MetroColorStyle.Orange
+	
+	def __init__(self):
+		self.TitleColor = Color.White
+		self.DisplayHeader = False
+		self.ShadowType = MetroFormShadowType.DropShadow
+		self.ShowIcon = False
+		self.Theme = MetroThemeStyle.Dark
+		self.Text = "EPFramework.EPForm"
+		self.Width = 360
+		self.Height = 240
+		self.DisplayTitle = True
+		self.Style = MetroColorStyle.Blue
+		self.BorderColor = Color.LightBlue
+		self.TitleColor = Color.White

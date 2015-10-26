@@ -1,0 +1,35 @@
+"""
+Wrapper Class
+PowerCrypt4 by OmniBean Inc.
+Ported by ExaPhaser with permission from OmniBean
+
+Full documentation available at
+http://exaphaser.github.io/PowerCrypt4/
+
+"""
+
+from System import *
+import sys
+original_curdir = Environment.CurrentDirectory
+curdir = IO.Path.GetDirectoryName(__file__)
+Environment.CurrentDirectory = curdir
+sys.path.append(curdir)
+
+import clr
+clr.AddReference('System.Windows.Forms')
+clr.AddReference('System.Drawing')
+clr.AddReferenceToFile('LibPowerCrypt4.dll')
+
+import OmniBean.PowerCrypt4
+
+class PHashAlgorithm:
+	SHA1, SHA256, SHA512 = range(3)
+
+class PowerRSA(OmniBean.PowerCrypt4.PowerRSA):
+	pass
+
+class PowerAES(OmniBean.PowerCrypt4.PowerAES):
+	pass
+	
+Environment.CurrentDirectory = original_curdir
+
