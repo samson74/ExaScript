@@ -505,6 +505,7 @@
   <ItemGroup>
     <None Include="IronPython.ruleset" />
     <EmbeddedResource Include="Modules\unicodedata\IPyUnicodeData.txt.gz" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <PolicyFile Include="policy.$(AssemblyName).config" />
@@ -519,16 +520,16 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Dynamic, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Util\References\DynamicLanguageRuntime.1.2.0-alpha1\lib\net45\Microsoft.Dynamic.dll</HintPath>
+      <HintPath>..\..\packages\DynamicLanguageRuntime.1.2.0-alpha1\lib\net45\Microsoft.Dynamic.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Util\References\DynamicLanguageRuntime.1.2.0-alpha1\lib\net45\Microsoft.Scripting.dll</HintPath>
+      <HintPath>..\..\packages\DynamicLanguageRuntime.1.2.0-alpha1\lib\net45\Microsoft.Scripting.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting.Metadata, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Util\References\DynamicLanguageRuntime.1.2.0-alpha1\lib\net45\Microsoft.Scripting.Metadata.dll</HintPath>
+      <HintPath>..\..\packages\DynamicLanguageRuntime.1.2.0-alpha1\lib\net45\Microsoft.Scripting.Metadata.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <Import Project="$(CSharpTargets)" />
