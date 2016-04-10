@@ -1,0 +1,1 @@
+Util\NuGet\nuget.exe restore packages.config -PackagesDirectory Util\References -ConfigFile NuGet.config
